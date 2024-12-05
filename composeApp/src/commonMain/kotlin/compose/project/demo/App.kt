@@ -16,10 +16,14 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import composedemo.composeapp.generated.resources.Res
 import composedemo.composeapp.generated.resources.compose_multiplatform
+import org.koin.compose.getKoin
 
 @Composable
 @Preview
 fun App() {
+    val koin = getKoin()
+    val koinDummy: KoinDummy = koin.get()
+
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
         Column(
@@ -31,7 +35,7 @@ fun App() {
                 Text("Click me!")
             }
             AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
+                val greeting = remember { koinDummy.get() }
                 Column(
                     Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
