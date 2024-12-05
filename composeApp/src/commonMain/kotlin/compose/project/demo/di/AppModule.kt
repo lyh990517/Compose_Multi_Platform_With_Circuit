@@ -10,7 +10,7 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
-val appModule = module {
+val circuitModule = module {
     createPresenterFactory<HomeScreen, HomePresenter> { navigator, screen ->
         HomePresenter(screen as HomeScreen, navigator, get())
     }
@@ -18,8 +18,6 @@ val appModule = module {
     createUiFactory<HomeScreen.State> { state, modifier ->
         HomeScreen(state as HomeScreen.State, modifier)
     }
-
-    single { TestUseCase() }
 
     single {
         Circuit.Builder()
@@ -29,9 +27,14 @@ val appModule = module {
     }
 }
 
+val useCaseModule = module {
+    single { TestUseCase() }
+}
+
 fun initKoin(config: KoinAppDeclaration? = null) {
     startKoin {
         config?.invoke(this)
-        modules(appModule)
+        modules(circuitModule)
+        modules(useCaseModule)
     }
 }
