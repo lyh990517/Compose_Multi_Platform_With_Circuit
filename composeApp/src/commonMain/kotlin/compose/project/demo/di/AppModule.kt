@@ -21,8 +21,8 @@ val circuitModule = module {
 
     single {
         Circuit.Builder()
-            .addUiFactory(get())
-            .addPresenterFactory(get())
+            .addUiFactories(getAll())
+            .addPresenterFactories(getAll())
             .build()
     }
 }
