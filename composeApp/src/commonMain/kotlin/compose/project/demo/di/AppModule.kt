@@ -3,6 +3,7 @@ package compose.project.demo.di
 import com.slack.circuit.foundation.Circuit
 import compose.project.demo.circuit.createPresenterFactory
 import compose.project.demo.circuit.createUiFactory
+import compose.project.demo.domain.TestUseCase
 import compose.project.demo.feature.home.HomePresenter
 import compose.project.demo.feature.home.HomeScreen
 import org.koin.core.context.startKoin
@@ -11,12 +12,14 @@ import org.koin.dsl.module
 
 val appModule = module {
     createPresenterFactory<HomeScreen, HomePresenter> { navigator, screen ->
-        HomePresenter(screen as HomeScreen, navigator)
+        HomePresenter(screen as HomeScreen, navigator, get())
     }
 
     createUiFactory<HomeScreen.State> { state, modifier ->
         HomeScreen(state as HomeScreen.State, modifier)
     }
+
+    single { TestUseCase() }
 
     single {
         Circuit.Builder()

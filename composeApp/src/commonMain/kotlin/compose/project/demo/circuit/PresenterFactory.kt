@@ -5,6 +5,7 @@ import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.screen.Screen
 import org.koin.core.module.Module
+import org.koin.core.scope.Scope
 
 @Suppress("UNCHECKED_CAST")
 class PresenterFactory<SCREEN : Screen, PRESENTER : Presenter<*>>(
@@ -20,7 +21,7 @@ class PresenterFactory<SCREEN : Screen, PRESENTER : Presenter<*>>(
 }
 
 @Suppress("UNCHECKED_CAST")
-fun <SCREEN : Screen, PRESENTER : Presenter<*>> Module.createPresenterFactory(presenter: (Navigator, Screen) -> Presenter<*>) {
+fun <SCREEN : Screen, PRESENTER : Presenter<*>> Module.createPresenterFactory(presenter: Scope.(Navigator, Screen) -> Presenter<*>) {
     factory<Presenter.Factory> {
         PresenterFactory<SCREEN, PRESENTER> { navigator, screen ->
             presenter(navigator, screen) as PRESENTER
