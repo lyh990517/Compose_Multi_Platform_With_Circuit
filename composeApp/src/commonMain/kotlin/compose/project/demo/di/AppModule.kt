@@ -19,7 +19,7 @@ val circuitModule = module {
         when (screen) {
             is HomeScreen -> HomePresenter(screen, navigator, get())
             is NextScreen -> NextPresenter(screen, navigator)
-            else -> HomePresenter(screen as HomeScreen, navigator, get())
+            else -> throw Exception("Invalid Screen Detected! :: $screen")
         }
     }
 
