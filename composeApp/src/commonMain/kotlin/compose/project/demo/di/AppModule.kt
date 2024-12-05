@@ -3,8 +3,9 @@ package compose.project.demo.di
 import com.slack.circuit.foundation.Circuit
 import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
+import compose.project.demo.feature.home.PresenterFactory
 import compose.project.demo.feature.home.HomePresenter
-import compose.project.demo.feature.home.HomePresenterFactory
+import compose.project.demo.feature.home.HomeScreen
 import compose.project.demo.feature.home.HomeScreenUiFactory
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -12,7 +13,7 @@ import org.koin.dsl.module
 
 val appModule = module {
     factory<Presenter.Factory> {
-        HomePresenterFactory { navigator, screen ->
+        PresenterFactory<HomeScreen, HomeScreen.State, HomePresenter> { navigator, screen ->
             HomePresenter(
                 screen,
                 navigator

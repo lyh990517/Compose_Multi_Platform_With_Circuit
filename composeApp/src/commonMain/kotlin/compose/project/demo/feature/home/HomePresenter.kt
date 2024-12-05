@@ -2,6 +2,7 @@ package compose.project.demo.feature.home
 
 import androidx.compose.runtime.Composable
 import com.slack.circuit.runtime.CircuitContext
+import com.slack.circuit.runtime.CircuitUiState
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.screen.Screen
@@ -20,17 +21,15 @@ class HomePresenter(
     }
 }
 
-class HomePresenterFactory(
-    private val presenterFactory: (Navigator, HomeScreen) -> HomePresenter,
+@Suppress("UNCHECKED_CAST")
+class PresenterFactory<SCREEN : Screen, STATE : CircuitUiState, PRESENTER : Presenter<STATE>>(
+    private val presenterFactory: (Navigator, SCREEN) -> PRESENTER
 ) : Presenter.Factory {
     override fun create(
         screen: Screen,
         navigator: Navigator,
         context: CircuitContext
-    ): Presenter<*>? {
-        return when (screen) {
-            is HomeScreen -> presenterFactory(navigator, screen)
-            else -> null
-        }
+    ): Presenter<*> {
+        return presenterFactory(navigator, screen as SCREEN)
     }
 }
