@@ -7,24 +7,22 @@ import com.slack.circuit.runtime.screen.Screen
 import org.koin.core.module.Module
 import org.koin.core.scope.Scope
 
-@Suppress("UNCHECKED_CAST")
-class PresenterFactory<SCREEN : Screen, PRESENTER : Presenter<*>>(
-    private val presenterFactory: (Navigator, SCREEN) -> PRESENTER
+class PresenterFactory<PRESENTER : Presenter<*>>(
+    private val presenterFactory: (Navigator, Screen) -> PRESENTER
 ) : Presenter.Factory {
     override fun create(
         screen: Screen,
         navigator: Navigator,
         context: CircuitContext
     ): Presenter<*> {
-        return presenterFactory(navigator, screen as SCREEN)
+        return presenterFactory(navigator, screen)
     }
 }
 
-@Suppress("UNCHECKED_CAST")
-fun <SCREEN : Screen, PRESENTER : Presenter<*>> Module.createPresenterFactory(presenter: Scope.(Navigator, Screen) -> Presenter<*>) {
+fun Module.createPresenterFactory(presenter: Scope.(Navigator, Screen) -> Presenter<*>) {
     factory<Presenter.Factory> {
-        PresenterFactory<SCREEN, PRESENTER> { navigator, screen ->
-            presenter(navigator, screen) as PRESENTER
+        PresenterFactory { navigator, screen ->
+            presenter(navigator, screen)
         }
     }
 }

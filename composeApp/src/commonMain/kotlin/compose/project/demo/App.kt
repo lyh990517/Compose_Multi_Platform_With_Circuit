@@ -7,7 +7,7 @@ import com.slack.circuit.foundation.Circuit
 import com.slack.circuit.foundation.CircuitCompositionLocals
 import com.slack.circuit.foundation.NavigableCircuitContent
 import com.slack.circuit.foundation.rememberCircuitNavigator
-import compose.project.demo.feature.home.HomeScreen
+import compose.project.demo.feature.HomeScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
