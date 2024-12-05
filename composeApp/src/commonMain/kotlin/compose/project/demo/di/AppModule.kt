@@ -5,8 +5,8 @@ import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.ui.Ui
 import compose.project.demo.feature.home.HomePresenter
 import compose.project.demo.feature.home.HomeScreen
-import compose.project.demo.feature.home.PresenterFactory
-import compose.project.demo.feature.home.UiFactory
+import compose.project.demo.circuit.PresenterFactory
+import compose.project.demo.circuit.UiFactory
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
