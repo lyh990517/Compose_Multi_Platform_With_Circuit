@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.slack.circuit.foundation.onNavEvent
 import com.slack.circuit.runtime.Navigator
@@ -22,7 +23,7 @@ class HomePresenter(
 
     @Composable
     override fun present(): HomeScreen.State {
-        var displayedScreen by remember { mutableStateOf<Screen>(NestedScreen1) }
+        var displayedScreen by rememberSaveable { mutableStateOf<Screen>(NestedScreen1) }
 
         return HomeScreen.State(
             displayedScreen = displayedScreen,
