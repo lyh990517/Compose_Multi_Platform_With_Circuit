@@ -1,9 +1,6 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import java.util.regex.Pattern
 
 plugins {
@@ -57,6 +54,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.okio)
             implementation(libs.multiplatformSettings.no.arg)
+            implementation(libs.bundles.circuit)
         }
         commonTest.dependencies {
             implementation(kotlin("test-annotations-common"))
