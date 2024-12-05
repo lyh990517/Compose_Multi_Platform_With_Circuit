@@ -6,9 +6,7 @@ import com.slack.circuit.runtime.screen.Screen
 import compose.project.demo.Parcelize
 
 @Parcelize
-data class HomeScreen(
-    val name: String
-) : Screen {
+data object HomeScreen : Screen {
     data class State(
         val state: String
     ) : CircuitUiState

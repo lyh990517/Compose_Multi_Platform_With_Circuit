@@ -11,8 +11,6 @@ import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
 val appModule = module {
-    single { KoinDummy() }
-
     factory<Presenter.Factory> {
         HomePresenterFactory { navigator, screen ->
             HomePresenter(

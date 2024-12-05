@@ -18,7 +18,7 @@ fun App() {
     val circuit: Circuit = koin.get()
 
     MaterialTheme {
-        val backStack = rememberSaveableBackStack(root = HomeScreen(""))
+        val backStack = rememberSaveableBackStack(root = HomeScreen)
         val navigator = rememberCircuitNavigator(backStack) {}
 
         CircuitCompositionLocals(circuit) {
