@@ -3,7 +3,6 @@ package compose.project.demo.feature.home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.slack.circuit.foundation.onNavEvent
@@ -13,7 +12,6 @@ import com.slack.circuit.runtime.screen.Screen
 import compose.project.demo.domain.TestUseCase
 import compose.project.demo.feature.HomeScreen
 import compose.project.demo.feature.NestedScreen1
-import compose.project.demo.feature.NextScreen
 
 class HomePresenter(
     private val screen: HomeScreen,
