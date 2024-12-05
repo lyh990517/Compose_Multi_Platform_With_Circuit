@@ -13,7 +13,7 @@ import org.koin.dsl.module
 
 val appModule = module {
     factory<Presenter.Factory> {
-        PresenterFactory<HomeScreen, HomeScreen.State, HomePresenter> { navigator, screen ->
+        PresenterFactory<HomeScreen, HomePresenter> { navigator, screen ->
             HomePresenter(
                 screen,
                 navigator
