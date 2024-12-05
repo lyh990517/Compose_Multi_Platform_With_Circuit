@@ -1,6 +1,7 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import java.util.regex.Pattern
 
 plugins {
@@ -12,7 +13,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
-    id("org.jetbrains.kotlin.plugin.parcelize")
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 kotlin {
@@ -101,6 +102,24 @@ kotlin {
 
         room {
             schemaDirectory("$projectDir/schemas")
+        }
+    }
+}
+
+kotlin {
+    targets.configureEach {
+        val isAndroidTarget = platformType == KotlinPlatformType.androidJvm
+        compilations.configureEach {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    if (isAndroidTarget) {
+                        freeCompilerArgs.addAll(
+                            "-P",
+                            "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=compose.project.demo.Parcelize",
+                        )
+                    }
+                }
+            }
         }
     }
 }
