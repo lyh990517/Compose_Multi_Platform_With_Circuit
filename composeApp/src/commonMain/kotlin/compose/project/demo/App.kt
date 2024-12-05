@@ -9,14 +9,10 @@ import com.slack.circuit.foundation.NavigableCircuitContent
 import com.slack.circuit.foundation.rememberCircuitNavigator
 import compose.project.demo.circuit.HomeScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.koin.compose.getKoin
 
 @Composable
 @Preview
-fun App() {
-    val koin = getKoin()
-    val circuit: Circuit = koin.get()
-
+fun App(circuit: Circuit) {
     MaterialTheme {
         val backStack = rememberSaveableBackStack(root = HomeScreen)
         val navigator = rememberCircuitNavigator(backStack) {}
