@@ -1,4 +1,4 @@
-package compose.project.demo.circuit
+package compose.project.demo.feature.home
 
 import com.slack.circuit.runtime.CircuitUiEvent
 import com.slack.circuit.runtime.CircuitUiState

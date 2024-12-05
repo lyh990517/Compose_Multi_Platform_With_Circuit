@@ -1,4 +1,4 @@
-package compose.project.demo.circuit
+package compose.project.demo.feature.home
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

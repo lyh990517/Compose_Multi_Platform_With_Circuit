@@ -1,4 +1,4 @@
-package compose.project.demo.circuit
+package compose.project.demo.feature.home
 
 import androidx.compose.runtime.Composable
 import com.slack.circuit.runtime.CircuitContext
