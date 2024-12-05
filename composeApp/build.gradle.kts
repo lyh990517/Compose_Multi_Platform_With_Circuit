@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    id("org.jetbrains.kotlin.plugin.parcelize")
 }
 
 kotlin {
