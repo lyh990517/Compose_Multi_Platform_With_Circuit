@@ -1,5 +1,10 @@
 package compose.project.demo.feature.home
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,6 +20,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.slack.circuit.foundation.CircuitContent
+import compose.project.demo.AppTheme
+import compose.project.demo.ContentType
 import compose.project.demo.feature.HomeScreen
 import compose.project.demo.feature.NestedScreen1
 import compose.project.demo.feature.NestedScreen2
@@ -34,19 +41,25 @@ fun HomeScreenUi(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
-            NavigationBar(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(100.dp)
+            AnimatedVisibility(
+                visible = AppTheme.contentType == ContentType.Single,
+                enter = slideInVertically { it } + fadeIn(),
+                exit = slideOutVertically { it } + fadeOut()
             ) {
-                screens.forEach { screen ->
-                    NavigationBarItem(
-                        selected = screen == state.displayedScreen,
-                        onClick = {
-                            state.eventSink(HomeScreen.Event.ChangeScreen(screen))
-                        },
-                        icon = { Icon(imageVector = Icons.Default.PlayArrow, "") }
-                    )
+                NavigationBar(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp)
+                ) {
+                    screens.forEach { screen ->
+                        NavigationBarItem(
+                            selected = screen == state.displayedScreen,
+                            onClick = {
+                                state.eventSink(HomeScreen.Event.ChangeScreen(screen))
+                            },
+                            icon = { Icon(imageVector = Icons.Default.PlayArrow, "") }
+                        )
+                    }
                 }
             }
         }
