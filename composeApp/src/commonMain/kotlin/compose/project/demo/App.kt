@@ -1,6 +1,5 @@
 package compose.project.demo
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import com.slack.circuit.backstack.rememberSaveableBackStack
 import com.slack.circuit.foundation.Circuit
@@ -13,7 +12,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun App(circuit: Circuit) {
-    MaterialTheme {
+    DemoTheme {
         val backStack = rememberSaveableBackStack(root = HomeScreen)
         val navigator = rememberCircuitNavigator(backStack) {}
 
